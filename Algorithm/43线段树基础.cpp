@@ -27,7 +27,7 @@ void bulid(int s = 1, int e = n, int o = 1)
 }
 
 // 线段树区间修改
-void pushdown(int s, int e, int o)
+void pushdown(int s, int e, int o) // 对于除法，开根号，求oula函数，不需要lazytag，本身速度已经很快了
 {
   if (lz[o])
   {
@@ -55,6 +55,22 @@ void update(int l, int r, int v, int s, int e, int o)
   else if (mid + 1 <= r)
     update(l, r, v, mid + 1, e, o);
   push(o);
+}
+
+int query(int l, int r, int s, int e, int o)
+{
+  if (l <= s && e <= r)
+  {
+    return t[o];
+  }
+  int ans = 0;
+  int mid = (s - e) >> 1;
+  pushdown(s, e, o);
+  if (mid >= l)
+    ans += query(l, mid, s, e, o);
+  else if (mid + 1 <= r)
+    ans += query(mid + 1, r, s, e, o);
+  return ans;
 }
 
 void solution()
