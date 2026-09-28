@@ -21,7 +21,7 @@ void bulid(int s = 1, int e = n, int o = 1)
     return;
   }
   int mid = (s + e) >> 1;
-  bulid(s, mid, 0 << 1);
+  bulid(s, mid, o << 1);
   bulid(mid + 1, e, o << 1 | 1);
   push(o);
 }
@@ -31,7 +31,7 @@ void pushdown(int s, int e, int o) // 对于除法，开根号，求oula函数�
 {
   if (lz[o])
   {
-    int ls = s << 1, rs = e << 1, mid = (s + e) >> 1;
+    int ls = o << 1, rs = o << 1 | 1, mid = (s + e) >> 1;
     t[ls] = (mid - s + 1) * lz[o];
     lz[ls] += lz[o];
     t[rs] = (e - mid) * lz[o];
@@ -51,9 +51,9 @@ void update(int l, int r, int v, int s, int e, int o)
   int mid = (l + r) >> 1;
   pushdown(s, e, o);
   if (mid >= l)
-    update(l, r, v, s, mid, o);
+    update(l, r, v, s, mid, o << 1);
   else if (mid + 1 <= r)
-    update(l, r, v, mid + 1, e, o);
+    update(l, r, v, mid + 1, e, o << 1 | 1);
   push(o);
 }
 
@@ -67,9 +67,9 @@ int query(int l, int r, int s, int e, int o)
   int mid = (s - e) >> 1;
   pushdown(s, e, o);
   if (mid >= l)
-    ans += query(l, mid, s, e, o);
+    ans += query(l, mid, s, e, o << 1);
   else if (mid + 1 <= r)
-    ans += query(mid + 1, r, s, e, o);
+    ans += query(mid + 1, r, s, e, o << 1 | 1);
   return ans;
 }
 
