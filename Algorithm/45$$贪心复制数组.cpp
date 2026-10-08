@@ -101,7 +101,7 @@ void solve()
 
     if (need > 0)
     {
-      d = (need + i) / (i + 1);
+      d = (need + i) / (i + 1); //   need/（i+1）向上取整
     }
 
     ans = min(ans, d + i);

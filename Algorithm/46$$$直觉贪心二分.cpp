@@ -24,9 +24,9 @@ void solve()
   for (int i = 1; i <= n; ++i)
     cin >> a[i];
   sort(a + 1, a + 1 + n);
-  for (int i = n; i >= 1; --i)
+  for (int i = n; i >= 1; --i) // 直觉认为答案应该是递增的 选择二分
   {
-    auto it = lower_bound(ret.begin(), ret.end(), a[i]);
+    auto it = lower_bound(ret.begin(), ret.end(), a[i]); // 看目前所有行内部是否有可以容得下的
     if (it == ret.end())
       ret.push_back(w - a[i]);
     else
