@@ -31,7 +31,7 @@ void update(ll a, int L, int s = 1, int e = m, int o = 1)
         update(a, L, mid + 1, e, o << 1 | 1);
     pushup(o);
 }
-// 权值线段树二分查找第k小
+// 权值线段树二分查找比k大的第一个数
 int query(ll k, int s = 1, int e = m, int o = 1)
 {
     if (s == e)
@@ -39,7 +39,7 @@ int query(ll k, int s = 1, int e = m, int o = 1)
     int mid = (s + e) >> 1;
     if (t[o << 1] >= k)
         return query(k, s, mid, o << 1);
-    else
+    else //************************************* 注：找右子树时需要减掉左子树满足的部分，因为是累加的前面所有的值
         return query(k - t[o << 1], mid + 1, e, o << 1 | 1);
 }
 
