@@ -5,7 +5,7 @@ const int N = 1e6 + 10;
 int n, a[N], st[N][21];
 int getMax(int l, int r)
 {
-  int k = log(r - l + 1) / log(2);
+  int k = log(r - l + 1) / log(2);               // __lg(r - l + 1)
   return max(st[l][k], st[r - (1 << k) + 1][k]); // 从l朝右走2^j长度，从r朝左走2^j长度
 }
 int main()
