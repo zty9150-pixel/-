@@ -183,7 +183,7 @@ void solve()
           ++add[group[i]];
       }
 
-      // 如果单列已经超出限制，该方案无解
+      // 如果单列已经超出限制，该方案则无解
       for (int g = 0; g < G; ++g)
       {
         if (add[g] > K)
