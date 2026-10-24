@@ -252,61 +252,61 @@ using ll = long long;
 
 void solve()
 {
-  ll n, x;
-  cin >> n >> x;
+    ll n, x;
+    cin >> n >> x;
 
-  if ((n & x) != x)
-  {
-    cout << -1 << '\n';
-    return;
-  }
-
-  ll m = n;
-
-  for (int i = 0; i <= 60; ++i)
-  {
-    ll bit = 1LL << i;
-    if ((n & bit) && !(x & bit))
+    if ((n & x) != x)
     {
-      ll pos = ((n >> (i + 1)) + 1) << (i + 1);
-      m = max(m, pos);
-    }
-  }
-
-  for (int i = 0; i <= 60; ++i)
-  {
-    ll bit = 1LL << i;
-    if (!(n & bit))
-      continue;
-
-    ll pos = ((n >> (i + 1)) + 1) << (i + 1);
-
-    if ((x & bit) && m >= pos)
-    {
-      cout << -1 << '\n';
-      return;
+        cout << -1 << '\n';
+        return;
     }
 
-    if (!(x & bit) && m < pos)
-    {
-      cout << -1 << '\n';
-      return;
-    }
-  }
+    ll m = n;
 
-  cout << m << '\n';
+    for (int i = 0; i <= 60; ++i)
+    {
+        ll bit = 1LL << i;
+        if ((n & bit) && !(x & bit))
+        {
+            ll pos = ((n >> (i + 1)) + 1) << (i + 1);
+            m = max(m, pos);
+        }
+    }
+
+    for (int i = 0; i <= 60; ++i)
+    {
+        ll bit = 1LL << i;
+        if (!(n & bit))
+            continue;
+
+        ll pos = ((n >> (i + 1)) + 1) << (i + 1);
+
+        if ((x & bit) && m >= pos)
+        {
+            cout << -1 << '\n';
+            return;
+        }
+
+        if (!(x & bit) && m < pos)
+        {
+            cout << -1 << '\n';
+            return;
+        }
+    }
+
+    cout << m << '\n';
 }
 
 int main()
 {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-  int t;
-  cin >> t;
+    int t;
+    cin >> t;
 
-  while (t--)
-    solve();
+    while (t--)
+        solve();
 
-  return 0;
+    return 0;
 }
