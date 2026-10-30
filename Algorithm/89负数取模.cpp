@@ -1,0 +1,1 @@
+/*    x = (n % mod + mod) % mod   */
