@@ -7,7 +7,7 @@ const int inf = 1e9;
 
 int n;
 ll h[N];
-struct Node
+struct Node //*****************时间复杂度O(nm),即点数*边数 */
 {
     ll x, y, w;
 };
@@ -46,7 +46,6 @@ int main()
     // cin >> t;
     // while (t--)
     {
-        solve();
     }
 
     return 0;
