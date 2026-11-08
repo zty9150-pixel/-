@@ -2,7 +2,7 @@
 using namespace std;
 using ll = long long;
 
-const int N = 2e5 + 10;
+const int N = 2e5 + 10; // 时间复杂度（mlogm）
 
 int n, m;
 ll pre[N];
