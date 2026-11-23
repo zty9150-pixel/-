@@ -51,30 +51,27 @@ void solution() // 自己写的版本
 
   for (int i = 0; i < len; ++i)
   {
-    char c = s[i];
-    char d = 0;
-    if (c < '4')
-      d = '4';
-    else if (c < '7') // 如果c==4会把d变成7，因为4有变成7的可能
-      d = '7';
-
-    if (d != 0)
+    int rem = len - i - 1;
+    for (char d : {'4', '7'})
     {
-      int n4 = cnt4 + (d == '4'); // 此点与可能的幸运数一致，测试能不能更新相同部分右端点
-      int n7 = cnt7 + (d == '7');
-      int rem = len - i - 1;
+      if (d <= s[i])
+        continue;
 
-      if (abs(n4 - n7) <= rem) // 如果剩余位置可以实现47平衡就更新
+      int n4 = cnt4 + (d == '4');
+      int n7 = cnt7 + (d == '7');
+
+      if (abs(n4 - n7) <= rem)
       {
         best_i = i;
         best_d = d;
         best_c4 = cnt4;
         best_c7 = cnt7;
+        break;
       }
     }
-    if (c == '4') // 统计47数量
+    if (s[i] == '4')
       cnt4++;
-    else if (c == '7')
+    else if (s[i] == '7')
       cnt7++;
     else
       break; // 大于7的位置直接出来，最右端已确认是此位置的上一个位置
